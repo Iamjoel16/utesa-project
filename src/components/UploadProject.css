@@ -1,46 +1,83 @@
-/* UploadProject.css */
-.upload-project-container {
+.upload-container {
     max-width: 600px;
-    margin: 50px auto;
+    margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
-    border: 2px solid #ffcc00;
-    border-radius: 10px;
-}
-
-.upload-project-container h2 {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .upload-container h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
     color: #003300;
-}
-
-.upload-project-container form {
+  }
+  
+  .upload-form {
+    display: grid;
+    grid-gap: 20px;
+  }
+  
+  .form-group {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-}
-
-.upload-project-container label {
+    align-items: flex-start;
+  }
+  
+  .form-group label {
     font-weight: bold;
+    margin-bottom: 5px;
     color: #003300;
-}
-
-.upload-project-container input,
-.upload-project-container select {
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 95%;
     padding: 10px;
     border: 2px solid #003300;
-    border-radius: 5px;
-}
-
-.upload-project-container button {
+    border-radius: 10px;
+    font-size: 16px;
+  }
+  
+  .file-input input {
+    padding: 10px;
+  }
+  
+  .submit-button {
     background-color: #ffcc00;
     color: #003300;
-    padding: 10px;
+    padding: 15px 25px;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.upload-project-container button:hover {
+    border-radius: 10px;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .submit-button:hover {
     background-color: #e6b800;
-}
+    transform: scale(1.05);
+  }
+  
+  .message-box {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f2f2f2;
+    border-left: 5px solid #003300;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #003300;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
