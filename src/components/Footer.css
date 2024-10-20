@@ -6,7 +6,7 @@ footer {
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
     margin-top: 20px;
     font-size: 16px;
-    border-radius: 10px;
+    border-radius: 2px;
     animation: fadeInUp 1s ease-in-out;
     position: relative;
 }
