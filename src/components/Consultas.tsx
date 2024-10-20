@@ -14,12 +14,14 @@ const Consultas: React.FC = () => {
   const [results, setResults] = useState<resultI[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [query, setQuery] = useState<string>('');
+  const [careerFilter, setCareerFilter] = useState<string>('');
+  const [yearFilter, setYearFilter] = useState<string>('');
 
   const handleSearch = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const { value: title } = evt.currentTarget.elements.namedItem('title') as HTMLInputElement;
 
-    if (title.trim() === '') {
+    if (query.trim() === '') {
       alert('Por favor, ingresa un término de búsqueda.');
       return;
     }
@@ -33,7 +35,7 @@ const Consultas: React.FC = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ title }),
+        body: JSON.stringify({ title: query, career: careerFilter, year: yearFilter }),
       });
 
       if (!response.ok) {
@@ -50,6 +52,14 @@ const Consultas: React.FC = () => {
     }
   };
 
+  const handleClearFilters = () => {
+    setQuery('');
+    setCareerFilter('');
+    setYearFilter('');
+    setResults([]);
+    setError(null);
+  };
+
   return (
     <div className="consultas-container">
       <h1>Buscar Proyectos de Grado, Monográficos y Tesis</h1>
@@ -59,10 +69,37 @@ const Consultas: React.FC = () => {
           id="title"
           name="title"
           placeholder="Ingresa el término de búsqueda..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
         />
-        <button className="search-button" type="submit">
-          Buscar
-        </button>
+        <div className="filters">
+          <select
+            id="career"
+            value={careerFilter}
+            onChange={(e) => setCareerFilter(e.target.value)}
+          >
+            <option value="">Todas las carreras</option>
+            <option value="ingenieria">Ingeniería</option>
+            <option value="medicina">Medicina</option>
+            <option value="administracion">Administración</option>
+          </select>
+          <input
+            type="number"
+            id="year"
+            name="year"
+            placeholder="Año"
+            value={yearFilter}
+            onChange={(e) => setYearFilter(e.target.value)}
+          />
+        </div>
+        <div className="buttons-container">
+          <button className="search-button" type="submit">
+            Buscar
+          </button>
+          <button className="clear-button" type="button" onClick={handleClearFilters}>
+            Limpiar Filtros
+          </button>
+        </div>
       </form>
       <div className="results-section">
         {loading && <p>Cargando resultados...</p>}
