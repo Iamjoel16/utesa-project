@@ -1,0 +1,49 @@
+.hero {
+    background: linear-gradient(to bottom right, rgba(0, 51, 0, 0.8), rgba(0, 51, 0, 0.6)), url('hero-image.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    height: calc(100vh - 400px);
+}
+
+.hero h1 {
+    font-size: 50px;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+    animation: fadeInDown 1s ease-in-out;
+}
+
+.hero .explore-button {
+    background-color: #ffcc00;
+    color: #003300;
+    padding: 15px 30px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hero .explore-button:hover {
+    background-color: #e6b800;
+    transform: scale(1.05);
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

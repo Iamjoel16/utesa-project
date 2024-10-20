@@ -1,0 +1,32 @@
+footer {
+    background-color: #003300;
+    color: #ffcc00;
+    text-align: center;
+    padding: 30px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    animation: fadeInUp 1s ease-in-out;
+    position: relative;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

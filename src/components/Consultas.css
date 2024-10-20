@@ -1,0 +1,64 @@
+/* Consultas.css */
+.consultas-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 2px solid #ffcc00;
+    border-radius: 10px;
+  }
+  
+  .consultas-container h1 {
+    text-align: center;
+    color: #003300;
+    margin-bottom: 20px;
+  }
+  
+  .search-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-section input {
+    padding: 10px;
+    width: 60%;
+    margin-right: 10px;
+    border: 2px solid #003300;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .search-section .search-button {
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    color: #003300;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .search-section .search-button:hover {
+    background-color: #e6b800;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .results-section {
+    margin-top: 20px;
+  }
+  
+  .results-section ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .results-section li {
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #003300;
+  }
+  

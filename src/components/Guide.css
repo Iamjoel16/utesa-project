@@ -1,0 +1,54 @@
+/* Guide.css */
+.guide-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 2px solid #ffcc00;
+    border-radius: 10px;
+  }
+  
+  .guide-container h2 {
+    text-align: center;
+    color: #003300;
+  }
+  
+  .guide-section {
+    margin-bottom: 20px;
+  }
+  
+  .guide-section h3 {
+    color: #003300;
+    margin-bottom: 10px;
+  }
+  
+  .guide-section p,
+  .guide-section ol,
+  .guide-section ul {
+    color: #003300;
+    font-size: 16px;
+  }
+  
+  .guide-section ol {
+    padding-left: 20px;
+  }
+  
+  .guide-section ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .guide-section ul li {
+    margin-bottom: 10px;
+  }
+  
+  .guide-section a {
+    color: #003300;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .guide-section a:hover {
+    text-decoration: underline;
+  }
+  

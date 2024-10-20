@@ -1,0 +1,46 @@
+/* UploadProject.css */
+.upload-project-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 2px solid #ffcc00;
+    border-radius: 10px;
+}
+
+.upload-project-container h2 {
+    text-align: center;
+    color: #003300;
+}
+
+.upload-project-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.upload-project-container label {
+    font-weight: bold;
+    color: #003300;
+}
+
+.upload-project-container input,
+.upload-project-container select {
+    padding: 10px;
+    border: 2px solid #003300;
+    border-radius: 5px;
+}
+
+.upload-project-container button {
+    background-color: #ffcc00;
+    color: #003300;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.upload-project-container button:hover {
+    background-color: #e6b800;
+}
