@@ -1,31 +1,45 @@
 import React, { useState } from 'react';
 import './Consultas.css';
 
-const Consultas: React.FC = () => {
-  const [query, setQuery] = useState<string>('');
-  const [results, setResults] = useState<string[]>([]); // Puedes cambiar el tipo según los datos reales
+interface resultI {
+  title: string
+  id: any
+  career: string
+  year: number
+  fileUrl: string
+  author: string
+}
 
-  // Función para manejar la acción del botón de buscar
-  const handleSearch = async () => {
-    if (query.trim() === '') {
+const Consultas: React.FC = () => {
+  const [results, setResults] = useState<resultI[]>([]); 
+
+  const handleSearch = async (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault()
+    const {value: title} = evt.currentTarget.elements.namedItem('title') as HTMLInputElement
+
+
+    if (title.trim() === '') {
       alert('Por favor, ingresa un término de búsqueda.');
       return;
     }
 
-    // Simulación de búsqueda
     try {
-      // Aquí podrías hacer una solicitud al servidor para buscar datos reales.
-      // Ejemplo de una búsqueda local simulada
-      const mockResults = [
-        'Proyecto de Grado en Ingeniería - 2021',
-        'Monográfico de Medicina - 2022',
-        'Tesis en Administración - 2020',
-      ];
-      const filteredResults = mockResults.filter((item) =>
-        item.toLowerCase().includes(query.toLowerCase())
-      );
 
-      setResults(filteredResults);
+      fetch('http://localhost:3000/searchProject', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title
+        }),
+      }).then((res) => {
+        return res.json()
+      }).then((data) => {
+        console.log(data)
+        setResults(data as any)
+      })
+
     } catch (err) {
       console.error('Error al realizar la búsqueda:', err);
       alert('Error al realizar la búsqueda. Inténtalo nuevamente.');
@@ -35,22 +49,22 @@ const Consultas: React.FC = () => {
   return (
     <div className="consultas-container">
       <h1>Buscar Proyectos de Grado, Monográficos y Tesis</h1>
-      <div className="search-section">
+      <form className="search-section" onSubmit={handleSearch}>
         <input
           type="text"
+          id="title"
+          name="title"
           placeholder="Ingresa el término de búsqueda..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
         />
-        <button className="search-button" onClick={handleSearch}>
+        <button className="search-button" type='submit'>
           Buscar
         </button>
-      </div>
+      </form>
       <div className="results-section">
         {results.length > 0 ? (
           <ul>
-            {results.map((result, index) => (
-              <li key={index}>{result}</li>
+            {results.map(({author, career, id,title, year}: resultI) => (
+              <li key={id}>autor: {author} carrera: {career} titulo: {title} año: {year}</li>
             ))}
           </ul>
         ) : (
