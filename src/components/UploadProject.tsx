@@ -12,7 +12,7 @@ const UploadProject: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/api/projects', {
+      const response = await fetch('http://localhost:3000/projects', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ const UploadProject: React.FC = () => {
           author,
           career,
           year,
-          fileUrl: file ? file.name : null, // Enviar solo el nombre del archivo por simplicidad
+          fileUrl: file ? file.name : null,
         }),
       });
 
@@ -88,6 +88,7 @@ const UploadProject: React.FC = () => {
         <label htmlFor="file">Archivo del Proyecto:</label>
         <input
           type="file"
+          accept='image/png, image/jpeg'
           id="file"
           onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
         />
