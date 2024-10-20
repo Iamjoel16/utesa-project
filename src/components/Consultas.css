@@ -1,19 +1,54 @@
 /* Consultas.css */
 .consultas-container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 2px solid #ffcc00;
-    border-radius: 10px;
-  }
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.results-section {
+  margin-top: 40px;
+}
+
+.results-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.result-item {
+  display: flex;
+  justify-content: center;
+}
+
+.result-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 100%;
+}
+
+.result-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
   
-  .consultas-container h1 {
-    text-align: center;
-    color: #003300;
-    margin-bottom: 20px;
-  }
+.result-card h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #003300;
+}
+
+.result-card p {
+  font-size: 16px;
+  margin: 5px 0;
+  color: #333333;
+}
   
+ 
   .search-section {
     display: flex;
     justify-content: center;
@@ -46,7 +81,7 @@
   }
   
   .results-section {
-    margin-top: 20px;
+    margin-top: 40px;
   }
   
   .results-section ul {
@@ -55,10 +90,12 @@
   }
   
   .results-section li {
-    background-color: #f2f2f2;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #003300;
+    background-color: #a3f15e;
+    margin: 10px 5px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 40px 8px rgba(0, 0, 0, 0.1);
   }
+  
+  
   
