@@ -1,17 +1,20 @@
 .hero {
-    background: linear-gradient(to bottom right, rgba(0, 51, 0, 0.8), rgba(31, 151, 31, 0.6)), url('hero-image.jpg') no-repeat center center/cover;
     color: white;
     text-align: center;
-    padding: 40px 20px;
+    padding-inline: 20px;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .hero h1 {
     font-size: 50px;
     margin-bottom: 30px;
+    margin-top: 0;
     position: relative;
     z-index: 1;
     animation: fadeInDown 1s ease-in-out;
