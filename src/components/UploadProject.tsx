@@ -16,20 +16,34 @@ const UploadProject: React.FC = () => {
     setMessage(null);
 
     try {
-      // Simulate API call
-      setTimeout(() => {
-        setLoading(false);
-        setMessage('Proyecto subido con éxito');
+      const response = await fetch('http://localhost:3000/projects', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title,
+          author,
+          career,
+          year,
+          fileUrl: file ? file.name : null,
+        }),
+      });
+
+      if (response.ok) {
+        alert('Proyecto subido con éxito');
+        // Limpiar el formulario
         setTitle('');
         setAuthor('');
         setCareer('ingenieria');
         setYear('');
         setFile(null);
-      }, 2000);
+      } else {
+        alert('Error al subir el proyecto');
+      }
     } catch (err) {
       console.error('Error:', err);
-      setMessage('Error al subir el proyecto');
-      setLoading(false);
+      alert('Error al conectar con el servidor');
     }
   };
 
@@ -88,6 +102,7 @@ const UploadProject: React.FC = () => {
           <input
             type="file"
             id="file"
+            accept='application/pdf'
             onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
           />
         </div>
