@@ -16,6 +16,7 @@ const Header: React.FC = () => {
           <li><a href="/consultas">Consultas</a></li>
           <li><a href="/subida-proyectos">Subida de Proyectos</a></li>
           <li><a href="/guia">Guía</a></li>
+          <li><a href="/admin">Panel de Administración</a></li>
         </ul>
       </nav>
     </header>
