@@ -32,7 +32,6 @@ const UploadProject: React.FC = () => {
 
       if (response.ok) {
         alert('Proyecto subido con éxito');
-        // Limpiar el formulario
         setTitle('');
         setAuthor('');
         setCareer('ingenieria');
