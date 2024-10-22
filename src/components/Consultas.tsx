@@ -21,31 +21,37 @@ const Consultas: React.FC = () => {
   const handleSearch = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     try {
-      setLoading(true);
-      setError(null);
+        setLoading(true);
+        setError(null);
 
-      const response = await fetch('http://localhost:3000/searchProject', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ title: query, career: careerFilter, year: yearFilter }),
-      });
+        // Construir el objeto de filtros dinámicamente
+        const filters: any = {};
+        if (query) filters.title = query;
+        if (careerFilter) filters.career = careerFilter;
+        if (yearFilter) filters.year = yearFilter;
 
-      if (!response.ok) {
-        throw new Error('Error al realizar la búsqueda');
-      }
+        const response = await fetch('http://localhost:3000/searchProject', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(filters),
+        });
 
-      const data = await response.json();
-      setResults(data as resultI[]);
+        if (!response.ok) {
+            const errorDetails = await response.text(); // Obtener detalles de error de la respuesta
+            throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}. Detalles: ${errorDetails}`);
+        }
+
+        const data = await response.json();
+        setResults(data as resultI[]);
     } catch (err) {
-      console.error('Error al realizar la búsqueda:', err);
-      setError('Error al realizar la búsqueda. Inténtalo nuevamente.');
+        console.error('Error al realizar la búsqueda:', err);
+        setError(`Error al realizar la búsqueda. Detalles: ${(err as Error).message}`);
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
-
+};
   const handleClearFilters = () => {
     setQuery('');
     setCareerFilter('');
@@ -112,11 +118,15 @@ const Consultas: React.FC = () => {
             ))}
           </ul>
         ) : (
-          !loading && <p>No se encontraron resultados.</p>
+          !loading && !error && results.length === 0 && (
+            <p>No se encontraron resultados.</p>
+          )
         )}
       </div>
     </div>
   );
 };
+
+
 
 export default Consultas;
