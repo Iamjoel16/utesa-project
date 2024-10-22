@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './Login.css';  // Import a CSS file for Login styles
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -16,19 +17,21 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Iniciar Sesión</h1>
+    <div className="login-container">
+      <h1 className="login-title">Iniciar Sesión</h1>
       <input
+        className="login-input"
         type="text"
         placeholder="Usuario"
         onChange={(e) => setUsername(e.target.value)}
       />
       <input
+        className="login-input"
         type="password"
         placeholder="Contraseña"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={handleLogin}>Ingresar</button>
+      <button className="login-button" onClick={handleLogin}>Ingresar</button>
     </div>
   );
 };

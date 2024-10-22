@@ -1,0 +1,31 @@
+.admin-panel {
+  text-align: center;
+  padding: 20px;
+}
+
+.button-group {
+  margin-top: 20px;
+}
+
+.admin-button {
+  background-color: #ffcc00;
+  color: #003300;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-button:hover {
+  background-color: rgba(0, 51, 0, 0.8);
+}
+
+.logout-button {
+  background-color: #dc3545;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+}
