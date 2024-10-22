@@ -20,12 +20,6 @@ const Consultas: React.FC = () => {
 
   const handleSearch = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-
-    if (query.trim() === '') {
-      alert('Por favor, ingresa un término de búsqueda.');
-      return;
-    }
-
     try {
       setLoading(true);
       setError(null);
@@ -92,7 +86,7 @@ const Consultas: React.FC = () => {
             onChange={(e) => setYearFilter(e.target.value)}
           />
         </div>
-        <div className="buttons-container">
+        <div className="buttons-container"> 
           <button className="search-button" type="submit">
             Buscar
           </button>
