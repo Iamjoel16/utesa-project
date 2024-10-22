@@ -24,7 +24,6 @@ const Consultas: React.FC = () => {
         setLoading(true);
         setError(null);
 
-        // Construir el objeto de filtros dinámicamente
         const filters: any = {};
         if (query) filters.title = query;
         if (careerFilter) filters.career = careerFilter;
@@ -39,7 +38,7 @@ const Consultas: React.FC = () => {
         });
 
         if (!response.ok) {
-            const errorDetails = await response.text(); // Obtener detalles de error de la respuesta
+            const errorDetails = await response.text(); 
             throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}. Detalles: ${errorDetails}`);
         }
 
