@@ -29,3 +29,34 @@
 .logout-button:hover {
   background-color: #c82333;
 }
+
+.projects-section {
+  margin-top: 30px;
+}
+
+.projects-table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.projects-table th, .projects-table td {
+  border: 1px solid #000000;
+  padding: 12px;
+  text-align: left;
+}
+
+.projects-table th {
+  background-color: #003300;
+  color: white;
+  font-weight: bold;
+}
+
+.projects-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.projects-table tr:hover {
+  background-color: #e6ffe6;
+}
