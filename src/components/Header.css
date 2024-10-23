@@ -90,10 +90,10 @@ header nav ul li a:hover::after {
 .content {
   width: 100%;
   position: relative;
-  z-index: 1; /* Asegúrate de ajustar el nivel de superposición */
+  z-index: 1;
 }
 
 .swiper-slider-container.content {
-  margin-top: 5; /* Asegúrate de alinear correctamente con el contenido del header */
+  margin-top: 5;
 }
 
