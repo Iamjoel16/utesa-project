@@ -39,6 +39,7 @@ const AdminPanel: React.FC = () => {
       }
     }
   };
+  
 
   return (
     <div className="admin-panel">
@@ -60,26 +61,28 @@ const AdminPanel: React.FC = () => {
       {showProjects && (
         <div className="projects-section">
           <h2>Proyectos Existentes</h2>
-          <table className="projects-table">
-            <thead>
-              <tr>
-                <th>Título</th>
-                <th>Autor</th>
-                <th>Carrera</th>
-                <th>Año</th>
-              </tr>
-            </thead>
-            <tbody>
-              {projects.map((project) => (
-                <tr key={project.id}>
-                  <td>{project.title}</td>
-                  <td>{project.author}</td>
-                  <td>{project.career}</td>
-                  <td>{project.year}</td>
+          <div id="projects">
+            <table className="projects-table">
+              <thead>
+                <tr>
+                  <th>Título</th>
+                  <th>Autor</th>
+                  <th>Carrera</th>
+                  <th>Año</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {projects.map((project) => (
+                  <tr key={project.id}>
+                    <td>{project.title}</td>
+                    <td>{project.author}</td>
+                    <td>{project.career}</td>
+                    <td>{project.year}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            </div>
         </div>
       )}
       <div className="logout-section">

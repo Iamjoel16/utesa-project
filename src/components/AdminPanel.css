@@ -3,6 +3,11 @@
   padding: 20px;
 }
 
+.admin-panel h1,
+.admin-panel p{
+  color: #fff;
+}
+
 .button-group {
   margin-top: 20px;
 }
@@ -20,6 +25,7 @@
 
 .admin-button:hover {
   background-color: rgba(0, 51, 0, 0.8);
+  color: #fff;
 }
 
 .logout-button {
@@ -37,9 +43,20 @@
 .projects-table {
   width: 100%;
   margin: 0 auto;
+  max-width: 70%;
+  overflow-x: auto;
   border-collapse: collapse;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+@media screen and (max-width: 40em){
+  #projects{
+    max-width: 85vw;
+    overflow: auto;
+  }
+
+}
+
 
 .projects-table th, .projects-table td {
   border: 1px solid #000000;

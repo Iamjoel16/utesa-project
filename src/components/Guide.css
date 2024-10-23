@@ -6,6 +6,12 @@
     border: 2px solid #ffcc00;
     border-radius: 10px;
   }
+
+  @media screen and (max-width: 40em){
+  .guide-container{
+    margin: 50px 20px;
+  }
+  }
   
   .guide-container h2 {
     text-align: center;

@@ -9,12 +9,11 @@ html, body {
 
 .app-container {
     display: grid;
-    grid-template-rows: 140px 1fr 110.4px;
+    grid-template-rows: auto 1fr auto;
     height: 100vh;
 }
 
 .content{
     background: linear-gradient(to bottom right, rgba(0, 51, 0, 0.8), rgba(31, 151, 31, 0.6)), url('hero-image.jpg') no-repeat center center/cover;
-    display: grid;
-    place-content: center;
 }
+

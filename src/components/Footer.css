@@ -5,7 +5,6 @@ footer {
     padding: 30px;
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
     font-size: 16px;
-    border-radius: 2px;
     position: relative;
 }
 
@@ -13,7 +12,16 @@ footer {
     header {
         flex-direction: column;
         height: auto;
+        margin-bottom: 0;
         padding: 15px;
+    }
+
+    header nav ul{
+        flex-direction: row !important;
+        flex-wrap: nowrap;
+        gap: 6px !important;
+        width: 100%;
+        padding-left: 0;
     }
 
     header .logo-text {

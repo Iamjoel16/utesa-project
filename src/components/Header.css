@@ -7,10 +7,10 @@ header {
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 3px;
     position: relative;
     z-index: 10;
     height: 100px;
+    margin-bottom: 0;
 }
 
 header .logo-container {
@@ -86,3 +86,14 @@ header nav ul li a:hover::after {
     width: 100%;
     left: 0;
 }
+
+.content {
+  width: 100%;
+  position: relative;
+  z-index: 1; /* Asegúrate de ajustar el nivel de superposición */
+}
+
+.swiper-slider-container.content {
+  margin-top: 5; /* Asegúrate de alinear correctamente con el contenido del header */
+}
+
