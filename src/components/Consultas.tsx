@@ -77,7 +77,7 @@ const Consultas: React.FC = () => {
             value={careerFilter}
             onChange={(e) => setCareerFilter(e.target.value)}
           >
-            <option value="">Todas las carreras</option>
+            <option value="">Todas las áreas</option>
             <option value="ingenieria">Ingeniería</option>
             <option value="medicina">Medicina</option>
             <option value="administracion">Administración</option>
@@ -110,7 +110,7 @@ const Consultas: React.FC = () => {
                 <div className="result-card">
                   <h2>{title}</h2>
                   <p><strong>Autor:</strong> {author}</p>
-                  <p><strong>Carrera:</strong> {career}</p>
+                  <p><strong>Área:</strong> {career}</p>
                   <p><strong>Año:</strong> {year}</p>
                 </div>
               </li>
