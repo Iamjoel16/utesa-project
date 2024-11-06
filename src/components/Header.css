@@ -97,3 +97,54 @@ header nav ul li a:hover::after {
   margin-top: 5;
 }
 
+
+.admin-panel {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    background-color: #003300;
+    color: #ffcc00;
+    font-size: 16px;
+    padding: 5px 10px;
+}
+
+.admin-panel a {
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.admin-panel a:hover {
+    color: #ffffff;
+}
+
+header {
+    padding-top: 10px; 
+}
+
+@media (max-width: 768px) {
+    .admin-panel {
+        position: static;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    header {
+        padding-top: 0;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo-container {
+        margin-bottom: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav ul li a {
+        font-size: 16px;
+    }
+}
