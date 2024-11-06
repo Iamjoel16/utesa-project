@@ -18,6 +18,7 @@ const Header: React.FC = () => {
           <li><a href="/">Inicio</a></li>
           <li><a href="/consultas">Consultas</a></li>
           <li><a href="/guia">Guía</a></li>
+          <li><a href="/acerca">Acerca de Nosotros</a></li>
         </ul>
       </nav>
     </header>

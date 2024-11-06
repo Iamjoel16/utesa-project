@@ -8,6 +8,7 @@ import UploadProject from './components/UploadProject';
 import Guide from './components/Guide';
 import AdminPanel from './components/AdminPanel';
 import Login from './components/Login';
+import AboutUs from './components/AboutUs';
 
 const App: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const App: React.FC = () => {
             <Route path="/consultas" element={<Consultas />} />
             <Route path="/subida-proyectos" element={<UploadProject />} />
             <Route path="/guia" element={<Guide />} />
+            <Route path="/acerca" element={<AboutUs />} />
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/login" element={<Login />} />
           </Routes>
