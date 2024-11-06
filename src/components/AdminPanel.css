@@ -1,11 +1,19 @@
-.admin-panel {
-  text-align: center;
-  padding: 20px;
+.admin-panel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 120px);
 }
 
-.admin-panel h1,
-.admin-panel p{
+.admin-panell {
+  text-align: center;
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #003300;
   color: #fff;
+  border-radius: 10px;
 }
 
 .button-group {
@@ -43,7 +51,6 @@
 .projects-table {
   width: 100%;
   margin: 0 auto;
-  max-width: 70%;
   overflow-x: auto;
   border-collapse: collapse;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -71,7 +78,7 @@
 }
 
 .projects-table tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #FFCC00;
 }
 
 .projects-table tr:hover {

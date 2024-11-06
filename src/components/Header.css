@@ -100,7 +100,7 @@ header nav ul li a:hover::after {
 
 .admin-panel {
     position: absolute;
-    top: 0;
+    top: 10px;
     right: 20px;
     background-color: #003300;
     color: #ffcc00;

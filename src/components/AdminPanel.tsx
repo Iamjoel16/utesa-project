@@ -39,54 +39,55 @@ const AdminPanel: React.FC = () => {
       }
     }
   };
-  
 
   return (
-    <div className="admin-panel">
-      <h1>Panel de Administración</h1>
-      <p>Bienvenido al panel de administración. Aquí puedes gestionar los contenidos del sitio.</p>
-      <div className="button-group">
-        <button className="admin-button" onClick={handleAddNewProject}>
-          {showUploadProject ? 'Cerrar Sección de Nuevo Proyecto' : 'Añadir Nuevo Proyecto'}
-        </button>
-        <button className="admin-button" onClick={handleViewProjects}>
-          {showProjects ? 'Ocultar Proyectos Existentes' : 'Ver Proyectos Existentes'}
-        </button>
-      </div>
-      {showUploadProject && (
-        <div className="upload-section">
-          <UploadProject />
+    <div className="admin-panel-container">
+      <div className="admin-panell">
+        <h1>Panel de Administración</h1>
+        <p>Bienvenido al panel de administración. Aquí puedes gestionar los contenidos del sitio.</p>
+        <div className="button-group">
+          <button className="admin-button" onClick={handleAddNewProject}>
+            {showUploadProject ? 'Cerrar Sección de Nuevo Proyecto' : 'Añadir Nuevo Proyecto'}
+          </button>
+          <button className="admin-button" onClick={handleViewProjects}>
+            {showProjects ? 'Ocultar Proyectos Existentes' : 'Ver Proyectos Existentes'}
+          </button>
         </div>
-      )}
-      {showProjects && (
-        <div className="projects-section">
-          <h2>Proyectos Existentes</h2>
-          <div id="projects">
-            <table className="projects-table">
-              <thead>
-                <tr>
-                  <th>Título</th>
-                  <th>Autor</th>
-                  <th>Carrera</th>
-                  <th>Año</th>
-                </tr>
-              </thead>
-              <tbody>
-                {projects.map((project) => (
-                  <tr key={project.id}>
-                    <td>{project.title}</td>
-                    <td>{project.author}</td>
-                    <td>{project.career}</td>
-                    <td>{project.year}</td>
+        {showUploadProject && (
+          <div className="upload-section">
+            <UploadProject />
+          </div>
+        )}
+        {showProjects && (
+          <div className="projects-section">
+            <h2>Proyectos Existentes</h2>
+            <div id="projects">
+              <table className="projects-table">
+                <thead>
+                  <tr>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Carrera</th>
+                    <th>Año</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {projects.map((project) => (
+                    <tr key={project.id}>
+                      <td>{project.title}</td>
+                      <td>{project.author}</td>
+                      <td>{project.career}</td>
+                      <td>{project.year}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
+          </div>
+        )}
+        <div className="logout-section">
+          <button className="admin-button logout-button" onClick={handleLogout}>Cerrar Sesión</button>
         </div>
-      )}
-      <div className="logout-section">
-        <button className="admin-button logout-button" onClick={handleLogout}>Cerrar Sesión</button>
       </div>
     </div>
   );
