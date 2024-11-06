@@ -105,3 +105,19 @@
   transform: scale(1.05);
 }
 
+.search-section input,
+.filters select,
+.filters input {
+  padding: 10px;
+  border: 2px solid #003300;
+  border-radius: 10px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
