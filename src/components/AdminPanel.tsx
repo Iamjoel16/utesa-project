@@ -69,6 +69,7 @@ const AdminPanel: React.FC = () => {
                     <th>Autor</th>
                     <th>Carrera</th>
                     <th>Año</th>
+                    <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -78,6 +79,15 @@ const AdminPanel: React.FC = () => {
                       <td>{project.author}</td>
                       <td>{project.career}</td>
                       <td>{project.year}</td>
+                      <td>
+                        {project.fileUrl && (
+                          <>
+                           <a href={`http://localhost:5173/pdfs/${project.fileUrl.split('/').pop()}`} className="pdf-link">
+                           Descargar PDF
+                            </a>
+                          </>
+                        )}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
