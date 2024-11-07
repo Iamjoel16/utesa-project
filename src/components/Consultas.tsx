@@ -29,8 +29,8 @@ const Consultas: React.FC = () => {
   const handleSearch = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (query.trim() === '' && authorFilter.trim() === '') {
-      alert('Por favor, ingresa un término de búsqueda o selecciona un filtro.');
+    if (!query.trim() && !authorFilter.trim() && !careerFilter && !yearFilter) {
+      alert('Por favor, selecciona un filtro o ingresa un término de búsqueda.');
       return;
     }
 
@@ -133,13 +133,12 @@ const Consultas: React.FC = () => {
                   <p><strong>Carrera:</strong> {career}</p>
                   <p><strong>Año:</strong> {year}</p>
                   {fileUrl && (
-                          <>
-                        <a href={`http://localhost:5173/pdfs/${fileUrl.split('/').pop()}`} className="pdf-link">
-                        Descargar PDF
-                        </a>
+                    <>
+                       <a href={`http://localhost:5173/pdfs/${fileUrl.split('/').pop()}`} className="pdf-link">
+                           Descargar PDF
+                            </a>
                     </>
                   )}
-
                 </div>
               </li>
             ))}
