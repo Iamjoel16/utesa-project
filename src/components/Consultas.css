@@ -48,6 +48,29 @@
   color: #333333;
 }
 
+.pdf-link {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #003300;
+    color: #ffffff;
+    display: flex;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+
+}
+
+.pdf-link:hover {
+  background-color: #004d00;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
 .search-section {
   display: flex;
   flex-direction: column;
