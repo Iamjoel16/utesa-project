@@ -1,76 +1,63 @@
 .upload-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    animation: fadeIn 0.5s ease-in-out;
-  }
-  
-  .upload-container h1 {
-    font-size: 30px;
-    margin-bottom: 20px;
-    color: #003300;
-  }
-  
-  .upload-form {
-    display: grid;
-    grid-gap: 20px;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .form-group label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #003300;
-  }
-  
-  .form-group input,
-  .form-group select {
-    width: 95%;
-    padding: 10px;
-    border: 2px solid #003300;
-    border-radius: 10px;
-    font-size: 16px;
-  }
-  
-  .file-input input {
-    padding: 10px;
-  }
-  
-  .submit-button {
-    background-color: #ffcc00;
-    color: #003300;
-    padding: 15px 25px;
-    border: none;
-    cursor: pointer;
-    border-radius: 10px;
-    font-size: 18px;
-    transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .submit-button:hover {
-    background-color: #e6b800;
-    transform: scale(1.05);
-  }
-  
-  .message-box {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #f2f2f2;
-    border-left: 5px solid #003300;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #003300;
-  }
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.upload-container h1 {
+  font-size: 22px;
+  color: #003300;
+  margin-bottom: 20px;
+}
+
+.upload-form .form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.upload-form .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #003300;
+}
+
+.upload-form .form-group input,
+.upload-form .form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #003300;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  background-color: #ffcc00;
+  color: #003300;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: rgba(255, 204, 0, 0.8);
+}
+
+.message-box {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #003300;
+}
+
   
   @keyframes fadeIn {
     0% {

@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './UploadProject.css';
 
 const UploadProject: React.FC = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [career, setCareer] = useState('Ingenieria');
-  const [year, setYear] = useState<number | string>('');
+  const [year, setYear] = useState<string>('');
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [availableYears, setAvailableYears] = useState<number[]>([]);
+
+  useEffect(() => {
+    // Generar una lista de años desde el año actual hasta 20 años atrás
+    const currentYear = new Date().getFullYear();
+    const years = Array.from({ length: 20 }, (_, i) => currentYear - i);
+    setAvailableYears(years);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,6 +51,8 @@ const UploadProject: React.FC = () => {
     } catch (err) {
       console.error('Error:', err);
       alert('Error al conectar con el servidor');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -87,13 +97,19 @@ const UploadProject: React.FC = () => {
 
         <div className="form-group">
           <label htmlFor="year">Año</label>
-          <input
-            type="number"
+          <select
             id="year"
             value={year}
             onChange={(e) => setYear(e.target.value)}
             required
-          />
+          >
+            <option value="">Selecciona un año</option>
+            {availableYears.map((availableYear) => (
+              <option key={availableYear} value={availableYear}>
+                {availableYear}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="form-group file-input">
