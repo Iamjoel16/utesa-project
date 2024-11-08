@@ -56,14 +56,32 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-@media screen and (max-width: 40em){
-  #projects{
+.pdf-link {
+  display: inline-block;
+  background-color: #ffcc00; 
+  color: #003300;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.pdf-link:hover {
+  background-color: rgba(255, 204, 0, 0.8);
+  transform: translateY(-5px); 
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 40em) {
+  #projects {
     max-width: 85vw;
     overflow: auto;
   }
-
 }
-
 
 .projects-table th, .projects-table td {
   border: 1px solid #000000;
@@ -81,3 +99,61 @@
   background-color: #FFCC00;
 }
 
+
+.login-container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  padding: 40px;
+  width: 400px;
+  text-align: center;
+}
+
+.login-container h1 {
+  font-size: 24px;
+  color: #003300;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #003300;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #003300;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.login-button {
+  background-color: #ffcc00;
+  color: #003300;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: rgba(255, 204, 0, 0.8);
+}
+
+.error-message {
+  color: #dc3545;
+  margin-top: 10px;
+  font-weight: bold;
+}
