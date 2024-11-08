@@ -132,14 +132,7 @@ const Consultas: React.FC = () => {
                   <p><strong>Autor:</strong> {author}</p>
                   <p><strong>Carrera:</strong> {career}</p>
                   <p><strong>Año:</strong> {year}</p>
-                  {fileUrl && (
-                    <>
-                       <a href={`http://localhost:5173/pdfs/${fileUrl.split('/').pop()}`} className="pdf-link">
-                           Descargar PDF
-                            </a>
-                    </>
-                  )}
-                </div>
+                   </div>
               </li>
             ))}
           </ul>          
