@@ -4,7 +4,7 @@ import './UploadProject.css';
 const UploadProject: React.FC = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-  const [career, setCareer] = useState('ingenieria');
+  const [career, setCareer] = useState('Ingenieria');
   const [year, setYear] = useState<number | string>('');
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -34,7 +34,7 @@ const UploadProject: React.FC = () => {
         alert('Proyecto subido con éxito');
         setTitle('');
         setAuthor('');
-        setCareer('ingenieria');
+        setCareer('Ingenieria');
         setYear('');
         setFile(null);
       } else {
