@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import './Consultas.css';
 
@@ -62,7 +63,6 @@ const Consultas: React.FC = () => {
 
   return (
     <div className="consultas-container">
-      <h1>Buscar Proyectos de Grado, Monográficos y Tesis</h1>
       <form className="search-section" onSubmit={handleSearch}>
         <input
           type="text"
@@ -120,25 +120,28 @@ const Consultas: React.FC = () => {
           </button>
         </div>
       </form>
-      <div className="results-section">
-        {loading && <p>Cargando resultados...</p>}
-        {error && <p>{error}</p>}
-        {results.length > 0 ? (
-          <ul className="results-list">
-            {results.map(({ author, career, id, title, year, fileUrl }: resultI) => (
-              <li key={id} className="result-item">
-                <div className="result-card">
-                  <h2>{title}</h2>
-                  <p><strong>Autor:</strong> {author}</p>
-                  <p><strong>Carrera:</strong> {career}</p>
-                  <p><strong>Año:</strong> {year}</p>
-                   </div>
-              </li>
-            ))}
-          </ul>          
-        ) : (
-          !loading && <p>No se encontraron resultados.</p>
-        )}
+      
+      <div className='container-results'>
+
+        <h1>Buscar Proyectos de Grado, Monográficos y Tesis</h1>
+        <div className="results-section">
+          {loading && <p>Cargando resultados...</p>}
+          {error && <p>{error}</p>}
+          {results.length > 0 ? (
+            <table className="results-table">
+              {results.map(({ author, career, id, title, year, fileUrl }: resultI) => (
+                <tr key={id} >
+                    <h2>{title}</h2>
+                    <p><strong>Autor:</strong> {author}</p>
+                    <p><strong>Carrera:</strong> {career}</p>
+                    <p><strong>Año:</strong> {year}</p>
+                </tr>
+              ))}
+            </table>          
+          ) : (
+            !loading && <p>No se encontraron resultados.</p>
+          )}
+        </div>
       </div>
     </div>
   );
