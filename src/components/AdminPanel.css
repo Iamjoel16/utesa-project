@@ -3,109 +3,17 @@
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 120px);
-}
-
-.admin-panell {
-  text-align: center;
   padding: 20px;
-  max-width: 900px;
-  width: 100%;
-  margin: 0 auto;
-  background-color: #003300;
-  color: #fff;
-  border-radius: 10px;
+  font-family: Arial, sans-serif;
 }
-
-.button-group {
-  margin-top: 20px;
-}
-
-.admin-button {
-  background-color: #ffcc00;
-  color: #003300;
-  border: none;
-  padding: 10px 20px;
-  margin: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.admin-button:hover {
-  background-color: rgba(0, 51, 0, 0.8);
-  color: #fff;
-}
-
-.logout-button {
-  background-color: #dc3545;
-}
-
-.logout-button:hover {
-  background-color: #c82333;
-}
-
-.projects-section {
-  margin-top: 30px;
-}
-
-.projects-table {
-  width: 100%;
-  margin: 0 auto;
-  overflow-x: auto;
-  border-collapse: collapse;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.pdf-link {
-  display: inline-block;
-  background-color: #ffcc00; 
-  color: #003300;
-  padding: 10px 15px;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-}
-
-.pdf-link:hover {
-  background-color: rgba(255, 204, 0, 0.8);
-  transform: translateY(-5px); 
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-}
-
-@media screen and (max-width: 40em) {
-  #projects {
-    max-width: 85vw;
-    overflow: auto;
-  }
-}
-
-.projects-table th, .projects-table td {
-  border: 1px solid #000000;
-  padding: 12px;
-  text-align: left;
-}
-
-.projects-table th {
-  background-color: #003300;
-  color: white;
-  font-weight: bold;
-}
-
-.projects-table tr:nth-child(even) {
-  background-color: #FFCC00;
-}
-
 
 .login-container {
-  background-color: #ffffff;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 40px;
+  background: #fff;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  padding: 40px;
-  width: 400px;
   text-align: center;
 }
 
@@ -156,4 +64,121 @@
   color: #dc3545;
   margin-top: 10px;
   font-weight: bold;
+}
+
+.admin-panell {
+  text-align: center;
+  padding: 20px;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #003300;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.button-group {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.admin-button {
+  background-color: #ffcc00;
+  color: #003300;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-button:hover {
+  background-color: rgba(0, 51, 0, 0.8);
+  color: #fff;
+}
+
+.logout-button {
+  background-color: #dc3545;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+}
+
+.projects-section {
+  margin-top: 30px;
+}
+
+.projects-table {
+  width: 100%;
+  margin: 0 auto;
+  overflow-x: auto;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.projects-table th, .projects-table td {
+  border: 1px solid #000000;
+  padding: 12px;
+  text-align: left;
+}
+
+.projects-table th {
+  background-color: #003300;
+  color: white;
+  font-weight: bold;
+}
+
+.projects-table tr:nth-child(even) {
+  background-color: #FFCC00;
+}
+
+.pdf-link {
+  display: inline-block;
+  background-color: #ffcc00; 
+  color: #003300;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.pdf-link:hover {
+  background-color: rgba(255, 204, 0, 0.8);
+  transform: translateY(-5px); 
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.edit-button {
+  padding: 5px 10px;
+  background: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background: #218838;
+}
+
+@media screen and (max-width: 40em) {
+  #projects {
+    max-width: 85vw;
+    overflow: auto;
+  }
+}
+
+.edit-section {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
