@@ -7,12 +7,12 @@ const UploadProject: React.FC = () => {
   const [career, setCareer] = useState('Ingenieria');
   const [year, setYear] = useState<string>('');
   const [file, setFile] = useState<File | null>(null);
+  const [summary, setSummary] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string | null>(null);
   const [availableYears, setAvailableYears] = useState<number[]>([]);
 
   useEffect(() => {
-    // Generar una lista de años desde el año actual hasta 20 años atrás
     const currentYear = new Date().getFullYear();
     const years = Array.from({ length: 20 }, (_, i) => currentYear - i);
     setAvailableYears(years);
@@ -35,6 +35,7 @@ const UploadProject: React.FC = () => {
           career,
           year,
           fileUrl: file ? file.name : null,
+          summary, 
         }),
       });
 
@@ -45,6 +46,7 @@ const UploadProject: React.FC = () => {
         setCareer('Ingenieria');
         setYear('');
         setFile(null);
+        setSummary(''); // Limpiar el campo de resumen
       } else {
         alert('Error al subir el proyecto');
       }
@@ -112,12 +114,23 @@ const UploadProject: React.FC = () => {
           </select>
         </div>
 
+        <div className="form-group">
+          <label htmlFor="summary">Resumen del Proyecto</label>
+          <textarea
+            id="summary"
+            value={summary}
+            onChange={(e) => setSummary(e.target.value)}
+            required
+            placeholder="Escriba un breve resumen del proyecto"
+          />
+        </div>
+
         <div className="form-group file-input">
           <label htmlFor="file">Archivo del Proyecto</label>
           <input
             type="file"
             id="file"
-            accept='application/pdf'
+            accept="application/pdf"
             onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
           />
         </div>

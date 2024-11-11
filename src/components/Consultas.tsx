@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import './Consultas.css';
 
@@ -9,6 +8,7 @@ interface resultI {
   year: number;
   fileUrl: string;
   author: string;
+  summary: string; 
 }
 
 const Consultas: React.FC = () => {
@@ -108,36 +108,40 @@ const Consultas: React.FC = () => {
           <button className="search-button" type="submit">
             Buscar
           </button>
-          <button className="clear-button" type="button" onClick={() => {
-            setQuery('');
-            setCareerFilter('');
-            setYearFilter('');
-            setAuthorFilter('');
-            setResults([]);
-            setError(null);
-          }}>
+          <button
+            className="clear-button"
+            type="button"
+            onClick={() => {
+              setQuery('');
+              setCareerFilter('');
+              setYearFilter('');
+              setAuthorFilter('');
+              setResults([]);
+              setError(null);
+            }}
+          >
             Limpiar Filtros
           </button>
         </div>
       </form>
-      
-      <div className='container-results'>
 
+      <div className="container-results">
         <h1>Buscar Proyectos de Grado, Monográficos y Tesis</h1>
         <div className="results-section">
           {loading && <p>Cargando resultados...</p>}
           {error && <p>{error}</p>}
           {results.length > 0 ? (
             <table className="results-table">
-              {results.map(({ author, career, id, title, year, fileUrl }: resultI) => (
-                <tr key={id} >
-                    <h2>{title}</h2>
-                    <p><strong>Autor:</strong> {author}</p>
-                    <p><strong>Carrera:</strong> {career}</p>
-                    <p><strong>Año:</strong> {year}</p>
+              {results.map(({ author, career, id, title, year, fileUrl, summary }: resultI) => (
+                <tr key={id}>
+                  <h2>{title}</h2>
+                  <p><strong>Autor:</strong> {author}</p>
+                  <p><strong>Carrera:</strong> {career}</p>
+                  <p><strong>Año:</strong> {year}</p>
+                  <p><strong>Resumen:</strong> <span dangerouslySetInnerHTML={{ __html: summary }} /></p> 
                 </tr>
               ))}
-            </table>          
+            </table>
           ) : (
             !loading && <p>No se encontraron resultados.</p>
           )}
