@@ -132,12 +132,12 @@
 }
 
 .projects-table tr:nth-child(even) {
-  background-color: #FFCC00;
+  background-color: #5bcd5b;
 }
 
 .pdf-link {
   display: inline-block;
-  background-color: #ffcc00; 
+  background-color: #ffcc00;
   color: #003300;
   padding: 10px 15px;
   text-align: center;
@@ -147,25 +147,35 @@
   transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  border: none;
 }
 
 .pdf-link:hover {
   background-color: rgba(255, 204, 0, 0.8);
-  transform: translateY(-5px); 
+  transform: translateY(-5px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .edit-button {
-  padding: 5px 10px;
-  background: #28a745;
+  display: inline-block;
+  background-color: #28a745;
   color: #fff;
-  border: none;
-  border-radius: 4px;
+  padding: 10px 20px;
+  margin-left: 15px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  border: none;
 }
 
 .edit-button:hover {
-  background: #218838;
+  background-color: #218838;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 40em) {
@@ -181,4 +191,27 @@
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
+}
+
+/* Estilo para el campo de resumen en la edición */
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #003300;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-group textarea:focus {
+  outline: none;
+  border-color: #ffcc00;
+  box-shadow: 0 0 5px rgba(255, 204, 0, 0.8);
+}
+
+.edit-section h2 {
+  color: #003300;
+  margin-bottom: 20px;
 }

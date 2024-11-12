@@ -143,13 +143,14 @@ const AdminPanel: React.FC = () => {
           )}
           {editingProject && (
             <div className="edit-section">
-              <h2>Editar Proyecto</h2>
+              <h2>Editando Proyecto: {editingProject.title}</h2>
               <form onSubmit={handleUpdateProject}>
                 <div className="form-group">
                   <label htmlFor="title">Título</label>
                   <input
                     type="text"
                     id="title"
+                    name="title"
                     value={editingProject.title}
                     onChange={(e) => setEditingProject({ ...editingProject, title: e.target.value })}
                     required
@@ -160,6 +161,7 @@ const AdminPanel: React.FC = () => {
                   <input
                     type="text"
                     id="author"
+                    name="author"
                     value={editingProject.author}
                     onChange={(e) => setEditingProject({ ...editingProject, author: e.target.value })}
                     required
@@ -170,6 +172,7 @@ const AdminPanel: React.FC = () => {
                   <input
                     type="text"
                     id="career"
+                    name="career"
                     value={editingProject.career}
                     onChange={(e) => setEditingProject({ ...editingProject, career: e.target.value })}
                     required
@@ -180,12 +183,24 @@ const AdminPanel: React.FC = () => {
                   <input
                     type="text"
                     id="year"
+                    name="year"
                     value={editingProject.year}
                     onChange={(e) => setEditingProject({ ...editingProject, year: e.target.value })}
                     required
                   />
                 </div>
+                <div className="form-group">
+                  <label htmlFor="summary">Resumen</label>
+                  <textarea
+                    id="summary"
+                    name="summary"
+                    value={editingProject.summary}
+                    onChange={(e) => setEditingProject({ ...editingProject, summary: e.target.value })}
+                    required
+                  />
+                </div>
                 <button type="submit" className="admin-button">Actualizar Proyecto</button>
+                <button type="button" className="admin-button" onClick={() => setEditingProject(null)}>Cancelar</button>
               </form>
             </div>
           )}
