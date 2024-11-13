@@ -148,6 +148,7 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   border: none;
+  margin-left: 30px;
 }
 
 .pdf-link:hover {
@@ -193,7 +194,6 @@
   margin-top: 20px;
 }
 
-/* Estilo para el campo de resumen en la edición */
 .form-group textarea {
   width: 100%;
   padding: 12px;
@@ -215,3 +215,26 @@
   color: #003300;
   margin-bottom: 20px;
 }
+
+.delete-button {
+  display: inline-block;
+  background-color: #dc3545;
+  color: #fff;
+  padding: 10px 20px;
+  margin-left: 10px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  border: none;
+}
+
+.delete-button:hover {
+  background-color: #c82333; 
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+

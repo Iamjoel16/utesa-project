@@ -77,6 +77,17 @@ const AdminPanel: React.FC = () => {
     }
   };
 
+  const handleDeleteProject = async (projectId: string) => {
+    if (window.confirm('¿Estás seguro de que deseas eliminar este proyecto?')) {
+      try {
+        await axios.delete(`http://localhost:3000/projects/${projectId}`);
+        setProjects(projects.filter((project) => project.id !== projectId));
+      } catch (error) {
+        console.error('Error deleting project:', error);
+      }
+    }
+  };
+
   const handleUpdateProject = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (editingProject) {
@@ -239,6 +250,12 @@ const AdminPanel: React.FC = () => {
                             onClick={() => handleEditProject(project.id)}
                           >
                             Editar
+                          </button>
+                          <button
+                            className="delete-button"
+                            onClick={() => handleDeleteProject(project.id)}
+                          >
+                            Eliminar
                           </button>
                         </td>
                       </tr>
