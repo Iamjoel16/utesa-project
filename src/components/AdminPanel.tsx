@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './AdminPanel.css';
 import UploadProject from './UploadProject';
 import axios from 'axios';
@@ -14,6 +14,8 @@ const AdminPanel: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [editingProject, setEditingProject] = useState<any | null>(null);
+  const [showAddUser, setShowAddUser] = useState(false);
+  const [newUser, setNewUser] = useState({ username: '', password: '', access_level: 1 });
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -32,12 +34,14 @@ const AdminPanel: React.FC = () => {
     setShowUploadProject(!showUploadProject);
     setShowProjects(false);
     setEditingProject(null);
+    setShowAddUser(false);
   };
 
   const handleViewProjects = async () => {
     setShowProjects(!showProjects);
     setShowUploadProject(false);
     setEditingProject(null);
+    setShowAddUser(false);
     if (!showProjects) {
       try {
         const response = await axios.get('http://localhost:3000/projects');
@@ -72,6 +76,7 @@ const AdminPanel: React.FC = () => {
       setEditingProject(response.data);
       setShowUploadProject(false);
       setShowProjects(false);
+      setShowAddUser(false);
     } catch (error) {
       console.error('Error fetching project:', error);
     }
@@ -98,6 +103,25 @@ const AdminPanel: React.FC = () => {
       } catch (error) {
         console.error('Error updating project:', error);
       }
+    }
+  };
+
+  const handleAddUser = () => {
+    setShowAddUser(!showAddUser);
+    setShowUploadProject(false);
+    setShowProjects(false);
+    setEditingProject(null);
+  };
+
+  const handleCreateUser = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      await axios.post('http://localhost:3000/admin_users', newUser);
+      setNewUser({ username: '', password: '', access_level: 1 });
+      setShowAddUser(false);
+      alert('Usuario añadido exitosamente.');
+    } catch (error) {
+      console.error('Error añadiendo usuario:', error);
     }
   };
 
@@ -146,12 +170,60 @@ const AdminPanel: React.FC = () => {
             <button className="admin-button" onClick={handleViewProjects}>
               {showProjects ? 'Ocultar Proyectos Existentes' : 'Ver Proyectos Existentes'}
             </button>
+            <button className="admin-button" onClick={handleAddUser}>
+              {showAddUser ? 'Cerrar Sección de Añadir Usuario' : 'Añadir Usuario'}
+            </button>
           </div>
+
           {showUploadProject && (
             <div className="upload-section">
               <UploadProject />
             </div>
           )}
+
+          {showAddUser && (
+            <div className="add-user-section">
+              <h2>Añadir Nuevo Usuario</h2>
+              <form onSubmit={handleCreateUser}>
+                <div className="form-group">
+                  <label htmlFor="newUsername">Nombre de Usuario</label>
+                  <input
+                    type="text"
+                    id="newUsername"
+                    value={newUser.username}
+                    onChange={(e) => setNewUser({ ...newUser, username: e.target.value })}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="newPassword">Contraseña</label>
+                  <input
+                    type="password"
+                    id="newPassword"
+                    value={newUser.password}
+                    onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="accessLevel">Nivel de Acceso</label>
+                  <select
+                    id="accessLevel"
+                    value={newUser.access_level}
+                    onChange={(e) =>
+                      setNewUser({ ...newUser, access_level: parseInt(e.target.value) })
+                    }
+                  >
+                    <option value={1}>1 - Invitado</option>
+                    <option value={2}>2 - Docente</option>
+                    <option value={3}>3 - Administrador</option>
+                  </select>
+                </div>
+                <button type="submit" className="admin-button">Añadir Usuario</button>
+              </form>
+            </div>
+          )}
+
           {editingProject && (
             <div className="edit-section">
               <h2>Editando Proyecto: {editingProject.title}</h2>
@@ -215,6 +287,7 @@ const AdminPanel: React.FC = () => {
               </form>
             </div>
           )}
+
           {showProjects && (
             <div className="projects-section">
               <h2>Proyectos Existentes</h2>
@@ -265,6 +338,7 @@ const AdminPanel: React.FC = () => {
               </div>
             </div>
           )}
+
           <div className="logout-section">
             <button className="admin-button logout-button" onClick={handleLogout}>
               Cerrar Sesión
