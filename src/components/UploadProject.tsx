@@ -20,14 +20,19 @@ const UploadProject: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    setMessage(null);
-
+  
+    const token = localStorage.getItem('token'); // Obtiene el token almacenado
+    if (!token) {
+      alert('No estás autorizado para realizar esta acción.');
+      return;
+    }
+  
     try {
       const response = await fetch('http://localhost:3000/projects', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`, 
         },
         body: JSON.stringify({
           title,
@@ -35,26 +40,19 @@ const UploadProject: React.FC = () => {
           career,
           year,
           fileUrl: file ? file.name : null,
-          summary, 
+          summary,
         }),
       });
-
-      if (response.ok) {
-        alert('Proyecto subido con éxito');
-        setTitle('');
-        setAuthor('');
-        setCareer('Ingenieria');
-        setYear('');
-        setFile(null);
-        setSummary(''); // Limpiar el campo de resumen
-      } else {
-        alert('Error al subir el proyecto');
+  
+      if (!response.ok) {
+        throw new Error('Error al subir el proyecto');
       }
-    } catch (err) {
-      console.error('Error:', err);
-      alert('Error al conectar con el servidor');
-    } finally {
-      setLoading(false);
+  
+      const data = await response.json();
+      alert(`Proyecto creado correctamente`);
+    } catch (error) {
+      console.error('Error al subir el proyecto:', error);
+      alert('Ocurrió un error al subir el proyecto. Por favor, inténtalo nuevamente.');
     }
   };
 
