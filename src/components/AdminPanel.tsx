@@ -19,10 +19,13 @@ const AdminPanel: React.FC = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
+    if (!token) {
+      alert('Por favor, inicia sesión para acceder al panel de administración.');
+      navigate('/login');
+    } else {
       setIsAuthenticated(true);
     }
-  }, []);
+  }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -42,50 +45,53 @@ const AdminPanel: React.FC = () => {
     setShowUploadProject(false);
     setEditingProject(null);
     setShowAddUser(false);
+
     if (!showProjects) {
       try {
-        const response = await axios.get('http://localhost:3000/projects');
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:3000/projects', {
+          headers: {
+            Authorization: `Bearer ${token}`, 
+          },
+        });
         setProjects(response.data);
-      } catch (error) {
+      } catch (error: any) {
         console.error('Error fetching projects:', error);
+        setError('Error al cargar los proyectos. Inténtalo nuevamente.');
       }
-    }
-  };
-
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:3000/login', { username, password });
-      localStorage.setItem('token', response.data.token);
-      setIsAuthenticated(true);
-      setError(null);
-    } catch (error) {
-      setError('Usuario o contraseña incorrecta.');
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      handleLogin(e as unknown as React.FormEvent<HTMLFormElement>);
     }
   };
 
   const handleEditProject = async (projectId: string) => {
     try {
-      const response = await axios.get(`http://localhost:3000/projects/${projectId}`);
-      setEditingProject(response.data);
+      const token = localStorage.getItem('token');
+      console.log(`Solicitando proyecto con ID: ${projectId}`); 
+      const response = await axios.get(`http://localhost:3000/projects/${projectId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      setEditingProject(response.data); 
       setShowUploadProject(false);
       setShowProjects(false);
       setShowAddUser(false);
     } catch (error) {
       console.error('Error fetching project:', error);
+      alert('No se encontró el proyecto.');
     }
   };
+  
 
   const handleDeleteProject = async (projectId: string) => {
     if (window.confirm('¿Estás seguro de que deseas eliminar este proyecto?')) {
       try {
-        await axios.delete(`http://localhost:3000/projects/${projectId}`);
+        const token = localStorage.getItem('token');
+        await axios.delete(`http://localhost:3000/projects/${projectId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`, 
+          },
+        });
         setProjects(projects.filter((project) => project.id !== projectId));
       } catch (error) {
         console.error('Error deleting project:', error);
@@ -95,13 +101,32 @@ const AdminPanel: React.FC = () => {
 
   const handleUpdateProject = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+  
     if (editingProject) {
+      console.log('Datos del proyecto a actualizar:', editingProject); 
       try {
-        await axios.put(`http://localhost:3000/projects/${editingProject.id}`, editingProject);
+        const token = localStorage.getItem('token');
+        const response = await axios.put(
+          `http://localhost:3000/projects/${editingProject.id}`,
+          editingProject,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, 
+            },
+          }
+        );
+  
+        console.log('Proyecto actualizado con éxito:', response.data);
         setEditingProject(null);
         handleViewProjects();
-      } catch (error) {
-        console.error('Error updating project:', error);
+      } catch (error: any) {
+        if (error.response && error.response.status === 404) {
+          console.error('Error: El proyecto no se encontró en la base de datos.');
+          alert('El proyecto no existe o no se encontró en la base de datos.');
+        } else {
+          console.error('Error al actualizar el proyecto:', error);
+          alert('Ocurrió un error al actualizar el proyecto.');
+        }
       }
     }
   };
@@ -116,7 +141,16 @@ const AdminPanel: React.FC = () => {
   const handleCreateUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3000/admin_users', newUser);
+      const token = localStorage.getItem('token');
+      await axios.post(
+        'http://localhost:3000/admin_users',
+        newUser,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, 
+          },
+        }
+      );
       setNewUser({ username: '', password: '', access_level: 1 });
       setShowAddUser(false);
       alert('Usuario añadido exitosamente.');
@@ -130,7 +164,7 @@ const AdminPanel: React.FC = () => {
       {!isAuthenticated ? (
         <div className="login-container">
           <h1>Iniciar Sesión</h1>
-          <form onSubmit={handleLogin}>
+          <form onSubmit={(e) => e.preventDefault()}>
             <div className="form-group">
               <label htmlFor="username">Nombre de Usuario</label>
               <input
@@ -138,7 +172,6 @@ const AdminPanel: React.FC = () => {
                 id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                onKeyDown={handleKeyDown}
                 required
               />
             </div>
@@ -149,7 +182,6 @@ const AdminPanel: React.FC = () => {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                onKeyDown={handleKeyDown}
                 required
               />
             </div>
@@ -288,53 +320,57 @@ const AdminPanel: React.FC = () => {
             </div>
           )}
 
+
           {showProjects && (
             <div className="projects-section">
               <h2>Proyectos Existentes</h2>
               <div id="projects">
-                <table className="projects-table">
-                  <thead>
-                    <tr>
-                      <th>Título</th>
-                      <th>Autor</th>
-                      <th>Carrera</th>
-                      <th>Año</th>
-                      <th>Acciones</th>
+              <table className="projects-table">
+                <thead>
+                  <tr>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Carrera</th>
+                    <th>Año</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {projects.map((project) => (
+                    <tr key={project.id}>
+                      <td>{project.title}</td>
+                      <td>{project.author}</td>
+                      <td>{project.career}</td>
+                      <td>{project.year}</td>
+                      <td>
+                        {project.fileUrl && (
+                          <a
+                            href={`http://localhost:5173/pdfs/${project.fileUrl.split('/').pop()}`}
+                            className="pdf-link"
+                          >
+                            Descargar PDF
+                          </a>
+                        )}
+                        <button
+                          className="edit-button"
+                          onClick={() => {
+                            console.log(`Editando proyecto con ID: ${project.id}`); 
+                            handleEditProject(project.id);
+                          }}
+                        >
+                          Editar
+                        </button>
+                        <button
+                          className="delete-button"
+                          onClick={() => handleDeleteProject(project.id)}
+                        >
+                          Eliminar
+                        </button>
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {projects.map((project) => (
-                      <tr key={project.id}>
-                        <td>{project.title}</td>
-                        <td>{project.author}</td>
-                        <td>{project.career}</td>
-                        <td>{project.year}</td>
-                        <td>
-                          {project.fileUrl && (
-                            <a
-                              href={`http://localhost:5173/pdfs/${project.fileUrl.split('/').pop()}`}
-                              className="pdf-link"
-                            >
-                              Descargar PDF
-                            </a>
-                          )}
-                          <button
-                            className="edit-button"
-                            onClick={() => handleEditProject(project.id)}
-                          >
-                            Editar
-                          </button>
-                          <button
-                            className="delete-button"
-                            onClick={() => handleDeleteProject(project.id)}
-                          >
-                            Eliminar
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                  ))}
+                </tbody>
+              </table>
               </div>
             </div>
           )}
