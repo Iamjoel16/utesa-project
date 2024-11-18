@@ -10,6 +10,7 @@ import AdminPanel from './components/AdminPanel';
 import Login from './components/Login';
 import AboutUs from './components/AboutUs';
 import ProtectedRoute from './components/ProtectedRoute';
+import DocentePanel from './components/DocentePanel';
 
 const App: React.FC = () => {
   return (
@@ -23,7 +24,15 @@ const App: React.FC = () => {
             <Route path="/guia" element={<Guide />} />
             <Route path="/acerca" element={<AboutUs />} />
             <Route path="/login" element={<Login />} />
-
+            
+            <Route
+              path="/docente"
+              element={
+                <ProtectedRoute requiredLevel={1}>
+                  <DocentePanel />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/admin"
               element={

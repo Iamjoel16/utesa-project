@@ -1,0 +1,110 @@
+.docente-panel-container {
+    padding: 40px;
+    background-color: #0b3d0b; 
+    min-height: 100vh;
+    color: #ffffff; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .docente-panel-container h1 {
+    font-size: 2.5rem;
+    color: #ffd700; 
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .projects-table {
+    width: 90%;
+    max-width: 1200px;
+    border-collapse: collapse;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .projects-table th {
+    background-color: #0b3d0b;
+    color: #ffd700; 
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    padding: 12px 15px;
+  }
+  
+  .projects-table td {
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: #0b3d0b; 
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .projects-table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .projects-table tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .pdf-link {
+    font-weight: bold;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 2px solid #ffd700; 
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .pdf-link:hover {
+    background-color: #ffd700;
+    color: #0b3d0b;
+  }
+  
+@media (max-width: 768px) {
+    .docente-panel-container {
+      padding: 20px 10px;
+    }
+  
+    h1 {
+      font-size: 1.8rem;
+    }
+  
+    .projects-table {
+      font-size: 0.9rem;
+    }
+  
+    .projects-table th,
+    .projects-table td {
+      padding: 8px 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+  
+    .projects-table {
+      width: 100%;
+      display: block;
+      overflow-x: auto; 
+    }
+  
+    .projects-table th,
+    .projects-table td {
+      font-size: 0.85rem;
+      padding: 5px;
+    }
+  
+    .pdf-link {
+      font-size: 0.8rem;
+      padding: 4px 8px;
+    }
+  }
+  
