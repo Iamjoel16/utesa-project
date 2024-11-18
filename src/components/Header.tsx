@@ -5,7 +5,7 @@ const Header: React.FC = () => {
   return (
     <header>
       <div className="admin-panel">
-                <a href="/admin">Panel de Administración</a>
+                <a href="/login">Panel de Administración</a>
             </div>
       <div className="logo-container">
         <a href="/" className="logo-link">

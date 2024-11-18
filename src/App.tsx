@@ -9,6 +9,7 @@ import Guide from './components/Guide';
 import AdminPanel from './components/AdminPanel';
 import Login from './components/Login';
 import AboutUs from './components/AboutUs';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App: React.FC = () => {
   return (
@@ -19,11 +20,26 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Hero />} />
             <Route path="/consultas" element={<Consultas />} />
-            <Route path="/subida-proyectos" element={<UploadProject />} />
             <Route path="/guia" element={<Guide />} />
             <Route path="/acerca" element={<AboutUs />} />
-            <Route path="/admin" element={<AdminPanel />} />
             <Route path="/login" element={<Login />} />
+
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute requiredLevel={3}>
+                  <AdminPanel />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/subida-proyectos"
+              element={
+                <ProtectedRoute requiredLevel={3}>
+                  <UploadProject />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </div>
         <Footer />
