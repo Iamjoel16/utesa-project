@@ -25,32 +25,35 @@ const Consultas: React.FC = () => {
     const currentYear = new Date().getFullYear();
     const years = Array.from({ length: 20 }, (_, i) => currentYear - i);
     setAvailableYears(years);
+    
   }, []);
 
   const handleSearch = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-
-    if (!query.trim() && !authorFilter.trim() && !careerFilter && !yearFilter) {
-      alert('Por favor, selecciona un filtro o ingresa un término de búsqueda.');
-      return;
-    }
-
+  
+    const filters: any = {};
+    if (query.trim()) filters.title = query;
+    if (careerFilter) filters.career = careerFilter;
+    if (yearFilter) filters.year = yearFilter;
+    if (authorFilter.trim()) filters.author = authorFilter;
+  
     try {
       setLoading(true);
       setError(null);
-
+  
       const response = await fetch('http://localhost:3000/searchProject', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`, 
         },
-        body: JSON.stringify({ title: query, career: careerFilter, year: yearFilter, author: authorFilter }),
+        body: JSON.stringify(filters), 
       });
-
+  
       if (!response.ok) {
         throw new Error('Error al realizar la búsqueda');
       }
-
+  
       const data = await response.json();
       setResults(data as resultI[]);
     } catch (err) {
@@ -109,7 +112,7 @@ const Consultas: React.FC = () => {
             Buscar
           </button>
           <button
-            className="clear-button"
+          className="clear-button"
             type="button"
             onClick={() => {
               setQuery('');
