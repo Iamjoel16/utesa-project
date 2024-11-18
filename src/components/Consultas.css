@@ -19,8 +19,8 @@ body {
 
 
 .container-results h1{
+  text-align: center;
   margin-top: 0;
-  color: #ffcc00;
 }
 
 .consultas-page {
