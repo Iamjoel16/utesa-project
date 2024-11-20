@@ -11,36 +11,33 @@ const UploadProject: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string | null>(null);
   const [availableYears, setAvailableYears] = useState<number[]>([]);
-  const [careers, setCareers] = useState<{ id: number; name: string }[]>([]); // Estado para las carreras
+  const [careers, setCareers] = useState<{ id: number; name: string }[]>([]); 
 
-  // Obtener carreras y configurar años disponibles
   useEffect(() => {
     const fetchCareers = async () => {
       try {
         const response = await fetch('http://localhost:3000/careers', {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`, // Autorización con token
+            Authorization: `Bearer ${localStorage.getItem('token')}`, 
           },
         });
         if (!response.ok) {
           throw new Error('Error al obtener las carreras');
         }
         const data = await response.json();
-        setCareers(data); // Guardamos las carreras obtenidas en el estado
+        setCareers(data);
       } catch (error) {
         console.error('Error al obtener las carreras:', error);
       }
     };
 
-    fetchCareers(); // Llamada para obtener las carreras
+    fetchCareers();
 
-    // Configurar años disponibles
     const currentYear = new Date().getFullYear();
     const years = Array.from({ length: 20 }, (_, i) => currentYear - i);
     setAvailableYears(years);
   }, []);
 
-  // Manejar la subida del proyecto
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -55,7 +52,7 @@ const UploadProject: React.FC = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`, // Enviar el token en la solicitud
+          Authorization: `Bearer ${token}`, 
         },
         body: JSON.stringify({
           title,

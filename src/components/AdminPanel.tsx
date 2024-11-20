@@ -41,7 +41,6 @@ useEffect(() => {
   fetchCareers();
 }, []);
 
-// Obtener los usuarios existentes al abrir la sección
 const fetchUsers = async () => {
   try {
     const token = localStorage.getItem('token');
@@ -57,7 +56,7 @@ const fetchUsers = async () => {
 };
 
 const handleEditUser = (user: any) => {
-  setEditingUser(user); // Seleccionar al usuario para editar
+  setEditingUser(user); 
 };
 
 const handleUpdateUser = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -77,7 +76,7 @@ const handleUpdateUser = async (e: React.FormEvent<HTMLFormElement>) => {
     );
     alert('Usuario actualizado correctamente');
     setEditingUser(null);
-    fetchUsers(); // Actualizar la lista de usuarios
+    fetchUsers(); 
   } catch (error) {
     console.error('Error al actualizar usuario:', error);
   }
@@ -94,7 +93,7 @@ const handleDeleteUser = async (userId: number) => {
       },
     });
     alert('Usuario eliminado correctamente');
-    fetchUsers(); // Actualizar la lista de usuarios
+    fetchUsers(); 
   } catch (error) {
     console.error('Error al eliminar usuario:', error);
   }
