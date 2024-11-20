@@ -12,11 +12,6 @@ footer {
     flex-wrap: wrap;
 }
 
-.footer-logo {
-    display: flex;
-    align-items: center;
-}
-
 .footer-logo .logo-image {
     height: 70px;
 }
@@ -108,11 +103,15 @@ footer {
     }
 
     footer {
-        display: block;
+        display: grid;
         padding: 20px;
         font-size: 14px;
+        justify-content: center;
     }
+    
 }
+
+
 
 @media (max-width: 480px) {
     header {
@@ -149,7 +148,10 @@ footer {
     }
 
     footer {
-        padding: 15px;
+        padding: 5px;
         font-size: 12px;
+        gap: 0px;
     }
 }
+
+
