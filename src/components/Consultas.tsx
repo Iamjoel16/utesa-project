@@ -58,7 +58,7 @@ const Consultas: React.FC = () => {
       setResults(data as resultI[]);
     } catch (err) {
       console.error('Error al realizar la búsqueda:', err);
-      setError('Error al realizar la búsqueda. Inténtalo nuevamente.');
+      setError('No hay datos que coincidan con su búsqueda. Inténtalo nuevamente.');
     } finally {
       setLoading(false);
     }
@@ -146,7 +146,7 @@ const Consultas: React.FC = () => {
               ))}
             </table>
           ) : (
-            !loading && <p>No se encontraron resultados.</p>
+            !loading && <p></p>
           )}
         </div>
       </div>
