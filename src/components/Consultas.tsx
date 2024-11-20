@@ -59,6 +59,7 @@ const Consultas: React.FC = () => {
     try {
       setLoading(true);
       setError(null);
+      setResults([]);
 
       const response = await fetch('http://localhost:3000/searchProject', {
         method: 'POST',

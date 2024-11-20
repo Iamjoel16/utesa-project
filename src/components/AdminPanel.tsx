@@ -20,6 +20,8 @@ const AdminPanel: React.FC = () => {
   const [newUser, setNewUser] = useState({ username: '', password: '', access_level: 1 });
   const [showManageCareers, setShowManageCareers] = useState(false);
   const [careers, setCareers] = useState<{ id: number; name: string }[]>([]); 
+  const [users, setUsers] = useState<any[]>([]); 
+  const [editingUser, setEditingUser] = useState<any | null>(null); 
 
 useEffect(() => {
   const fetchCareers = async () => {
@@ -38,6 +40,66 @@ useEffect(() => {
 
   fetchCareers();
 }, []);
+
+// Obtener los usuarios existentes al abrir la sección
+const fetchUsers = async () => {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await axios.get('http://localhost:3000/admin_users', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    setUsers(response.data);
+  } catch (error) {
+    console.error('Error al obtener usuarios:', error);
+  }
+};
+
+const handleEditUser = (user: any) => {
+  setEditingUser(user); // Seleccionar al usuario para editar
+};
+
+const handleUpdateUser = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  if (!editingUser) return;
+
+  try {
+    const token = localStorage.getItem('token');
+    const response = await axios.put(
+      `http://localhost:3000/admin_users/${editingUser.id}`,
+      editingUser,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    alert('Usuario actualizado correctamente');
+    setEditingUser(null);
+    fetchUsers(); // Actualizar la lista de usuarios
+  } catch (error) {
+    console.error('Error al actualizar usuario:', error);
+  }
+};
+
+const handleDeleteUser = async (userId: number) => {
+  if (!window.confirm('¿Estás seguro de que deseas eliminar este usuario?')) return;
+
+  try {
+    const token = localStorage.getItem('token');
+    await axios.delete(`http://localhost:3000/admin_users/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    alert('Usuario eliminado correctamente');
+    fetchUsers(); // Actualizar la lista de usuarios
+  } catch (error) {
+    console.error('Error al eliminar usuario:', error);
+  }
+};
+
 
 
   useEffect(() => {
