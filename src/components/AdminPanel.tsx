@@ -19,6 +19,26 @@ const AdminPanel: React.FC = () => {
   const [showAddUser, setShowAddUser] = useState(false);
   const [newUser, setNewUser] = useState({ username: '', password: '', access_level: 1 });
   const [showManageCareers, setShowManageCareers] = useState(false);
+  const [careers, setCareers] = useState<{ id: number; name: string }[]>([]); 
+
+useEffect(() => {
+  const fetchCareers = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get('http://localhost:3000/careers', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setCareers(response.data); 
+    } catch (error) {
+      console.error('Error al obtener las carreras:', error);
+    }
+  };
+
+  fetchCareers();
+}, []);
+
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -299,14 +319,20 @@ const AdminPanel: React.FC = () => {
                 </div>
                 <div className="form-group">
                   <label htmlFor="career">Carrera</label>
-                  <input
-                    type="text"
+                  <select
                     id="career"
                     name="career"
                     value={editingProject.career}
                     onChange={(e) => setEditingProject({ ...editingProject, career: e.target.value })}
                     required
-                  />
+                  >
+                    <option value="">Selecciona una carrera</option>
+                    {careers.map((career) => (
+                      <option key={career.id} value={career.name}>
+                        {career.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div className="form-group">
                   <label htmlFor="year">Año</label>
@@ -334,7 +360,6 @@ const AdminPanel: React.FC = () => {
               </form>
             </div>
           )}
-
 
           {showProjects && (
             <div className="projects-section">

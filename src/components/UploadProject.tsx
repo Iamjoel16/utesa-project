@@ -4,35 +4,58 @@ import './UploadProject.css';
 const UploadProject: React.FC = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-  const [career, setCareer] = useState('Ingenieria');
+  const [career, setCareer] = useState('');
   const [year, setYear] = useState<string>('');
   const [file, setFile] = useState<File | null>(null);
   const [summary, setSummary] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string | null>(null);
   const [availableYears, setAvailableYears] = useState<number[]>([]);
+  const [careers, setCareers] = useState<{ id: number; name: string }[]>([]); // Estado para las carreras
 
+  // Obtener carreras y configurar años disponibles
   useEffect(() => {
+    const fetchCareers = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/careers', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`, // Autorización con token
+          },
+        });
+        if (!response.ok) {
+          throw new Error('Error al obtener las carreras');
+        }
+        const data = await response.json();
+        setCareers(data); // Guardamos las carreras obtenidas en el estado
+      } catch (error) {
+        console.error('Error al obtener las carreras:', error);
+      }
+    };
+
+    fetchCareers(); // Llamada para obtener las carreras
+
+    // Configurar años disponibles
     const currentYear = new Date().getFullYear();
     const years = Array.from({ length: 20 }, (_, i) => currentYear - i);
     setAvailableYears(years);
   }, []);
 
+  // Manejar la subida del proyecto
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
-    const token = localStorage.getItem('token'); // Obtiene el token almacenado
+
+    const token = localStorage.getItem('token');
     if (!token) {
       alert('No estás autorizado para realizar esta acción.');
       return;
     }
-  
+
     try {
       const response = await fetch('http://localhost:3000/projects', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`, 
+          Authorization: `Bearer ${token}`, // Enviar el token en la solicitud
         },
         body: JSON.stringify({
           title,
@@ -43,13 +66,13 @@ const UploadProject: React.FC = () => {
           summary,
         }),
       });
-  
+
       if (!response.ok) {
         throw new Error('Error al subir el proyecto');
       }
-  
+
       const data = await response.json();
-      alert(`Proyecto creado correctamente`);
+      alert(`Proyecto creado correctamente: ${data.message}`);
     } catch (error) {
       console.error('Error al subir el proyecto:', error);
       alert('Ocurrió un error al subir el proyecto. Por favor, inténtalo nuevamente.');
@@ -88,10 +111,14 @@ const UploadProject: React.FC = () => {
             id="career"
             value={career}
             onChange={(e) => setCareer(e.target.value)}
+            required
           >
-            <option value="Ingenieria">Ingeniería</option>
-            <option value="Medicina">Medicina</option>
-            <option value="Licenciatura">Licenciatura</option>
+            <option value="">Selecciona una carrera</option>
+            {careers.map((careerOption) => (
+              <option key={careerOption.id} value={careerOption.name}>
+                {careerOption.name}
+              </option>
+            ))}
           </select>
         </div>
 

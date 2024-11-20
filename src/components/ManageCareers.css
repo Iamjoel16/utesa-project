@@ -1,17 +1,17 @@
 .manage-careers-container {
-    background-color: #fff; /* Fondo blanco para contraste */
+    background-color: #fff; 
     padding: 20px;
     margin: 20px auto;
     max-width: 600px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border: 2px solid #0b3d0b; /* Verde oscuro para borde */
+    border: 2px solid #0b3d0b;
     text-align: center;
   }
   
   .manage-careers-container h2 {
     font-size: 24px;
-    color: #0b3d0b; /* Verde oscuro */
+    color: #0b3d0b; 
     margin-bottom: 20px;
     text-transform: uppercase;
     font-weight: bold;
@@ -33,8 +33,8 @@
   }
   
   .add-career-form button {
-    background-color: #ffd700; /* Amarillo para destacar */
-    color: #0b3d0b; /* Texto verde oscuro */
+    background-color: #ffd700; 
+    color: #0b3d0b; 
     border: none;
     padding: 10px 15px;
     font-size: 16px;
@@ -44,7 +44,7 @@
   }
   
   .add-career-form button:hover {
-    background-color: #f4c700; /* Amarillo más oscuro al pasar el cursor */
+    background-color: #f4c700; 
   }
   
   .career-list {
@@ -71,7 +71,7 @@
   }
   
   .career-list button {
-    background-color: #e74c3c; /* Rojo para eliminar */
+    background-color: #e74c3c;
     color: #fff;
     border: none;
     padding: 5px 10px;
@@ -81,6 +81,6 @@
   }
   
   .career-list button:hover {
-    background-color: #c0392b; /* Rojo más oscuro al pasar el cursor */
+    background-color: #c0392b; 
   }
   

@@ -20,27 +20,46 @@ const Consultas: React.FC = () => {
   const [yearFilter, setYearFilter] = useState<string>('');
   const [authorFilter, setAuthorFilter] = useState<string>('');
   const [availableYears, setAvailableYears] = useState<number[]>([]);
+  const [careers, setCareers] = useState<{ id: number; name: string }[]>([]);
 
   useEffect(() => {
+    const fetchCareers = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/careers', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error('Error al obtener las carreras');
+        }
+        const data = await response.json();
+        setCareers(data); 
+      } catch (error) {
+        console.error('Error al obtener las carreras:', error);
+      }
+    };
+
+    fetchCareers(); 
+  
     const currentYear = new Date().getFullYear();
     const years = Array.from({ length: 20 }, (_, i) => currentYear - i);
     setAvailableYears(years);
-    
   }, []);
 
   const handleSearch = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-  
+
     const filters: any = {};
     if (query.trim()) filters.title = query;
     if (careerFilter) filters.career = careerFilter;
     if (yearFilter) filters.year = yearFilter;
     if (authorFilter.trim()) filters.author = authorFilter;
-  
+
     try {
       setLoading(true);
       setError(null);
-  
+
       const response = await fetch('http://localhost:3000/searchProject', {
         method: 'POST',
         headers: {
@@ -49,11 +68,11 @@ const Consultas: React.FC = () => {
         },
         body: JSON.stringify(filters), 
       });
-  
+
       if (!response.ok) {
         throw new Error('Error al realizar la búsqueda');
       }
-  
+
       const data = await response.json();
       setResults(data as resultI[]);
     } catch (err) {
@@ -90,9 +109,11 @@ const Consultas: React.FC = () => {
             onChange={(e) => setCareerFilter(e.target.value)}
           >
             <option value="">Todas las carreras</option>
-            <option value="ingenieria">Ingeniería</option>
-            <option value="medicina">Medicina</option>
-            <option value="administracion">Administración</option>
+            {careers.map((career) => (
+              <option key={career.id} value={career.name}>
+                {career.name}
+              </option>
+            ))}
           </select>
           <select
             id="year"
@@ -112,7 +133,7 @@ const Consultas: React.FC = () => {
             Buscar
           </button>
           <button
-          className="clear-button"
+            className="clear-button"
             type="button"
             onClick={() => {
               setQuery('');
