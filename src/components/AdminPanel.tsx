@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import './AdminPanel.css';
 import UploadProject from './UploadProject';
 import axios from 'axios';
+import ManageCareers from './ManageCareers';
+
 
 const AdminPanel: React.FC = () => {
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ const AdminPanel: React.FC = () => {
   const [editingProject, setEditingProject] = useState<any | null>(null);
   const [showAddUser, setShowAddUser] = useState(false);
   const [newUser, setNewUser] = useState({ username: '', password: '', access_level: 1 });
+  const [showManageCareers, setShowManageCareers] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -38,6 +41,14 @@ const AdminPanel: React.FC = () => {
     setShowProjects(false);
     setEditingProject(null);
     setShowAddUser(false);
+  };
+
+  const handleManageCareers = () => {
+    setShowManageCareers(!showManageCareers);
+    setShowUploadProject(false);
+    setShowProjects(false);
+    setShowAddUser(false);
+    setEditingProject(null);
   };
 
   const handleViewProjects = async () => {
@@ -205,7 +216,11 @@ const AdminPanel: React.FC = () => {
             <button className="admin-button" onClick={handleAddUser}>
               {showAddUser ? 'Cerrar Sección de Añadir Usuario' : 'Añadir Usuario'}
             </button>
+            <button className="admin-button" onClick={handleManageCareers}>
+               {showManageCareers ? 'Cerrar Gestión de Carreras' : 'Gestionar Carreras'}
+            </button>
           </div>
+          {showManageCareers && <ManageCareers />}
 
           {showUploadProject && (
             <div className="upload-section">

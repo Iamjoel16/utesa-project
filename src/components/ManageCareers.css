@@ -1,0 +1,86 @@
+.manage-careers-container {
+    background-color: #fff; /* Fondo blanco para contraste */
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #0b3d0b; /* Verde oscuro para borde */
+    text-align: center;
+  }
+  
+  .manage-careers-container h2 {
+    font-size: 24px;
+    color: #0b3d0b; /* Verde oscuro */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  .add-career-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .add-career-form input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .add-career-form button {
+    background-color: #ffd700; /* Amarillo para destacar */
+    color: #0b3d0b; /* Texto verde oscuro */
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .add-career-form button:hover {
+    background-color: #f4c700; /* Amarillo más oscuro al pasar el cursor */
+  }
+  
+  .career-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .career-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .career-list li span {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .career-list button {
+    background-color: #e74c3c; /* Rojo para eliminar */
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .career-list button:hover {
+    background-color: #c0392b; /* Rojo más oscuro al pasar el cursor */
+  }
+  
