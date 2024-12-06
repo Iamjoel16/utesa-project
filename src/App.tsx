@@ -28,7 +28,7 @@ const App: React.FC = () => {
             <Route
               path="/docente"
               element={
-                <ProtectedRoute requiredLevel={1}>
+                <ProtectedRoute requiredLevel={2}>
                   <DocentePanel />
                 </ProtectedRoute>
               }
